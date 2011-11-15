@@ -11,12 +11,12 @@ var opts = {
 var servers = {
     http : http.createServer(function (req, res) {
         res.setHeader('content-type', 'text/plain');
-        res.end('I am an http server!');
+        res.end('I am an http server!\r\n');
     }),
     https : https.createServer(opts, function (req, res) {
         res.setHeader('content-type', 'text/plain');
-        res.write('I AM TOTALLY SECURE AND STUFF YOU GUYS.');
-        res.end(' SELF SIGNED IS TOTALLY SECURE, WHATEVER.');
+        res.end('I AM TOTALLY SECURE AND STUFF YOU GUYS.'
+            + ' SELF SIGNED IS TOTALLY SECURE, WHATEVER.\r\n');
     }),
 };
 
