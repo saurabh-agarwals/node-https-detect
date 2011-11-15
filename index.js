@@ -1,7 +1,7 @@
 var net = require('net');
 var EventEmitter = require('events').EventEmitter;
 
-var exports = module.exports = function (opts) {
+module.exports = function (opts) {
     var server = net.createServer(function (stream) {
         detect(stream, handler);
     });
@@ -31,7 +31,7 @@ var exports = module.exports = function (opts) {
     return server;
 };
 
-var detect = exports.detect = function (stream, cb) {
+function detect (stream, cb) {
     stream.once('data', function (buf) {
         if (buf.slice(0,8).toString().match(/^([A-Za-z]+) /)) {
             cb('http', stream, buf);
@@ -40,4 +40,4 @@ var detect = exports.detect = function (stream, cb) {
             cb('https', stream, buf);
         }
     });
-};
+}
